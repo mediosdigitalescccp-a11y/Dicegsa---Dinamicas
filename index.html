@@ -110,7 +110,8 @@ button { font-family: inherit; }
 .thumb { position: relative; aspect-ratio: 1 / 1; background: linear-gradient(145deg, color-mix(in srgb, var(--c) 22%, #fff), color-mix(in srgb, var(--c) 45%, #fff)); }
 .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .thumb .ph { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--c2); font-weight: 700; font-size: 12px; padding: 10px; }
-.net { position: absolute; top: 8px; left: 8px; z-index: 2; font-size: 11px; font-weight: 800; color: #fff; padding: 2px 9px; border-radius: 999px; background: var(--n); }
+.cre-top { padding: 8px 10px; }
+.net { display: inline-block; font-size: 11px; font-weight: 800; color: #fff; padding: 2px 9px; border-radius: 999px; background: var(--n); }
 .cre-body { padding: 10px 12px 12px; display: grid; gap: 6px; font-size: 12px; flex: 1; align-content: center; }
 .play { position: absolute; left: 50%; top: 50%; width: 54px; height: 54px; margin: -27px 0 0 -27px; border-radius: 50%; background: rgba(0,0,0,.5); z-index: 2; }
 .play::after { content: ""; position: absolute; left: 21px; top: 16px; border-style: solid; border-width: 11px 0 11px 17px; border-color: transparent transparent transparent #fff; }
@@ -286,7 +287,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
       <div class="bban"><div class="plate">${logo(m)}</div><div class="bban-t"><small>Dinámica · Interacción</small><h2>${m.marca}</h2><p>Del ${rango(m)} · ${VID[m.marca] ? 'video boosteado' : 'publicación boosteada'} en Facebook e Instagram</p></div></div>
       <div class="btiles">${bt.map(([a, b, c]) => `<div class="tile"><small>${a}</small><b class="num">${b}</b><span>${c}</span></div>`).join('')}</div>
       <div class="bgrid">
-        <section class="card bcard"><h3>${VID[m.marca] ? 'Boosteos del video' : 'Boosteos'}</h3><p class="sub">Un boosteo por red, ordenados por impresiones.</p><div class="cres">${cre.map((c) => `<article class="cre"><div class="thumb"><div class="ph">${m.marca}<br>${NET[c.r][0]}</div><img src="img/${ID[m.marca]}_${c.r}.jpg" alt="${m.marca} ${NET[c.r][0]}" loading="lazy" onerror="this.remove()"><span class="net" style="--n:${NET[c.r][1]}">${NET[c.r][0]}</span>${VID[m.marca] ? '<span class="play" aria-hidden="true"></span>' : ''}</div>
+        <section class="card bcard"><h3>${VID[m.marca] ? 'Boosteos del video' : 'Boosteos'}</h3><p class="sub">Un boosteo por red, ordenados por impresiones.</p><div class="cres">${cre.map((c) => `<article class="cre"><div class="cre-top"><span class="net" style="--n:${NET[c.r][1]}">${NET[c.r][0]}</span></div><div class="thumb"><div class="ph">${m.marca}<br>${NET[c.r][0]}</div><img src="img/${ID[m.marca]}_${c.r}.jpg" alt="${m.marca} ${NET[c.r][0]}" loading="lazy" onerror="this.remove()">${VID[m.marca] ? '<span class="play" aria-hidden="true"></span>' : ''}</div>
           <div class="cre-body"><span class="nm">${VID[m.marca] ? 'VIDEO' : 'BOOST DINÁMICA'} ${c.r}</span><div><span>Impresiones</span><b class="num">${F.M(c.imp)}</b></div><div><span>Participación</span><b class="num">${F.pct(c.imp / m.T.imp)}</b></div></div></article>`).join('')}</div></section>
         <section class="card bcard"><h3>Por día</h3><div class="keys"><span style="--k:color-mix(in srgb, ${col} 28%, #fff)">Impresiones</span><span style="--k:${col}">Interacciones</span></div><div class="chart" id="c-${ID[m.marca]}"></div></section>
         <section class="card bcard"><h3>Audiencia</h3><p class="sub">Alcance por segmento.</p><div class="aud">
