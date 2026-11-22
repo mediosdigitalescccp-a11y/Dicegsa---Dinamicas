@@ -207,7 +207,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
     <ul>
       <li>Fuente: Meta Ads, campañas de interacción de cada marca (publicaciones impulsadas en Facebook e Instagram).</li>
       <li>Alcance, frecuencia y CPM de cada dinámica = columnas Reach Nuevo, Frec Nuevo y CPM Nuevo de la hoja; el alcance no se suma entre días ni entre marcas.</li>
-      <li>Interacciones = interacciones con la publicación que reporta Meta. % interacción = interacciones ÷ impresiones. Comentarios = participación en la dinámica.</li>
+      <li>Interacciones = interacciones con la publicación que reporta Meta; en Lubriderm (video) incluyen las reproducciones. % interacción = interacciones ÷ impresiones. Comentarios = participación en la dinámica.</li>
       <li>El último día de una dinámica todavía activa está en curso.</li>
       <li>Montos en USD.</li>
     </ul>
@@ -278,14 +278,14 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
     const cre = ['FB', 'IG'].map((r) => { const rows = m.creativos.filter((c) => c.red === r); return { r, imp: sum(rows, 'impresiones'), dias: rows.length }; }).filter((c) => c.imp).sort((a, b) => b.imp - a.imp);
     const gen = m.genero.filter((g) => g.seg !== 'Desconocido'), gt = sum(gen, 'v'), GC = { Mujer: col, Hombre: 'var(--navy)' };
     const ed = m.edad, et = sum(ed, 'v'), emx = Math.max(...ed.map((e) => e.v)), rg = m.region.slice(0, 4), rt = sum(m.genero, 'v'), rmx = rg[0].v;
-        const bt = [['Alcance', F.int(m.alcance), 'personas únicas'], ['Impresiones', F.int(m.T.imp), 'frecuencia ' + F.d2(m.frecuencia)], ['Interacciones', F.int(m.T.inter), F.pct1(m.T.tasa) + ' de interacción'],
+        const bt = [['Alcance', F.int(m.alcance), 'personas únicas'], ['Impresiones', F.int(m.T.imp), 'frecuencia ' + F.d2(m.frecuencia)], ['Interacciones', F.int(m.T.inter), VID[m.marca] ? 'incluye reproducciones del video' : F.pct1(m.T.tasa) + ' de interacción'],
       ['Comentarios', F.int(m.T.com), 'participación'], m.T.likes != null ? ['Me gusta a la página', F.int(m.T.likes), 'nuevos seguidores'] : ['Días activa', String(m.T.dias), rango(m)], ['CPM', F.usd(m.cpm), 'costo por mil impresiones']];
     return `<section class="bsec" id="m-${ID[m.marca]}" style="--c:${col};--c2:${C2[m.marca]}">
-      <div class="bban"><div class="plate">${logo(m)}</div><div class="bban-t"><small>Dinámica · Interacción</small><h2>${m.marca}</h2><p>Del ${rango(m)} · publicaciones impulsadas en Facebook e Instagram</p></div></div>
+      <div class="bban"><div class="plate">${logo(m)}</div><div class="bban-t"><small>Dinámica · Interacción</small><h2>${m.marca}</h2><p>Del ${rango(m)} · ${VID[m.marca] ? 'video impulsado' : 'publicaciones impulsadas'} en Facebook e Instagram</p></div></div>
       <div class="btiles">${bt.map(([a, b, c]) => `<div class="tile"><small>${a}</small><b class="num">${b}</b><span>${c}</span></div>`).join('')}</div>
       <div class="bgrid">
-        <section class="card bcard"><h3>Publicaciones impulsadas</h3><p class="sub">Ordenadas por impresiones.</p><div class="cres">${cre.map((c) => `<article class="cre"><div class="thumb"><img src="img/${ID[m.marca]}_${c.r}.jpg" alt="${m.marca} ${NET[c.r][0]}" loading="lazy" onerror="this.remove()"><div class="ph">${m.marca}<br>${NET[c.r][0]}</div><span class="net" style="--n:${NET[c.r][1]}">${NET[c.r][0]}</span></div>
-          <div class="cre-body"><span class="nm">BOOST DINÁMICA ${c.r}</span><div><span>Impresiones</span><b class="num">${F.M(c.imp)}</b></div><div><span>Participación</span><b class="num">${F.pct(c.imp / m.T.imp)}</b></div></div></article>`).join('')}</div></section>
+        <section class="card bcard"><h3>${VID[m.marca] ? 'Video impulsado' : 'Publicaciones impulsadas'}</h3><p class="sub">Ordenadas por impresiones.</p><div class="cres">${cre.map((c) => `<article class="cre"><div class="thumb"><img src="img/${ID[m.marca]}_${c.r}.jpg" alt="${m.marca} ${NET[c.r][0]}" loading="lazy" onerror="this.remove()"><div class="ph">${m.marca}<br>${NET[c.r][0]}</div><span class="net" style="--n:${NET[c.r][1]}">${NET[c.r][0]}</span></div>
+          <div class="cre-body"><span class="nm">${VID[m.marca] ? 'VIDEO' : 'BOOST DINÁMICA'} ${c.r}</span><div><span>Impresiones</span><b class="num">${F.M(c.imp)}</b></div><div><span>Participación</span><b class="num">${F.pct(c.imp / m.T.imp)}</b></div></div></article>`).join('')}</div></section>
         <section class="card bcard"><h3>Por día</h3><div class="keys"><span style="--k:color-mix(in srgb, ${col} 28%, #fff)">Impresiones</span><span style="--k:${col}">Interacciones</span></div><div class="chart" id="c-${ID[m.marca]}"></div></section>
         <section class="card bcard"><h3>Audiencia</h3><p class="sub">Alcance por segmento.</p><div class="aud">
           <div><h4>Género</h4><div class="gbar">${gen.map((g) => `<i style="width:${g.v / gt * 100}%;background:${GC[g.seg]}"></i>`).join('')}</div><div class="gl">${gen.map((g) => `<span>${g.seg} <b>${F.pct(g.v / gt)}</b></span>`).join('')}</div></div>
