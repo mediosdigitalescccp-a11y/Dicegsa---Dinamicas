@@ -107,11 +107,13 @@ button { font-family: inherit; }
 
 .cres { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; flex: 1; }
 .cre { background: color-mix(in srgb, var(--c) 5%, #fff); border: 1px solid color-mix(in srgb, var(--c) 18%, var(--line)); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
-.thumb { position: relative; aspect-ratio: 4 / 5; background: linear-gradient(145deg, color-mix(in srgb, var(--c) 22%, #fff), color-mix(in srgb, var(--c) 45%, #fff)); }
+.thumb { position: relative; aspect-ratio: 1 / 1; background: linear-gradient(145deg, color-mix(in srgb, var(--c) 22%, #fff), color-mix(in srgb, var(--c) 45%, #fff)); }
 .thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .thumb .ph { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--c2); font-weight: 700; font-size: 12px; padding: 10px; }
 .net { position: absolute; top: 8px; left: 8px; z-index: 2; font-size: 11px; font-weight: 800; color: #fff; padding: 2px 9px; border-radius: 999px; background: var(--n); }
-.cre-body { padding: 10px 12px 12px; display: grid; gap: 4px; font-size: 12px; }
+.cre-body { padding: 10px 12px 12px; display: grid; gap: 6px; font-size: 12px; flex: 1; align-content: center; }
+.play { position: absolute; left: 50%; top: 50%; width: 54px; height: 54px; margin: -27px 0 0 -27px; border-radius: 50%; background: rgba(0,0,0,.5); z-index: 2; }
+.play::after { content: ""; position: absolute; left: 21px; top: 16px; border-style: solid; border-width: 11px 0 11px 17px; border-color: transparent transparent transparent #fff; }
 .cre-body .nm { font-weight: 800; font-size: 12.5px; }
 .cre-body div { display: flex; justify-content: space-between; gap: 8px; }
 .cre-body b { white-space: nowrap; }
@@ -205,7 +207,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
   <details class="notes">
     <summary>Notas sobre las cifras</summary>
     <ul>
-      <li>Fuente: Meta Ads, campañas de interacción de cada marca (publicaciones impulsadas en Facebook e Instagram).</li>
+      <li>Fuente: Meta Ads, campañas de interacción de cada marca (boosteos de la publicación en Facebook e Instagram).</li>
       <li>Alcance, frecuencia y CPM de cada dinámica = columnas Reach Nuevo, Frec Nuevo y CPM Nuevo de la hoja; el alcance no se suma entre días ni entre marcas.</li>
       <li>Interacciones = interacciones con la publicación que reporta Meta; en Lubriderm (video) incluyen las reproducciones. % interacción = interacciones ÷ impresiones. Comentarios = participación en la dinámica.</li>
       <li>El último día de una dinámica todavía activa está en curso.</li>
@@ -215,7 +217,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
   <footer class="foot"><div class="conf"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2" fill="none" stroke="#e8622c" stroke-width="2"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" fill="none" stroke="#e8622c" stroke-width="2"/><circle cx="12" cy="15.5" r="1.4" fill="#e8622c"/></svg><p><b>Información confidencial.</b> Propiedad de CCCP UM Nicaragua. Uso interno; no distribuir sin autorización.</p></div></footer>
 </main>
 
-<script src="datos.js?v=2"></script>
+<script src="datos.js?v=3"></script>
 <script>
 (() => {
   const D = window.DN_DATA, M = D.dinamicas;
@@ -281,10 +283,10 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
         const bt = [['Alcance', F.int(m.alcance), 'personas únicas'], ['Impresiones', F.int(m.T.imp), 'frecuencia ' + F.d2(m.frecuencia)], ['Interacciones', F.int(m.T.inter), VID[m.marca] ? 'incluye reproducciones del video' : F.pct1(m.T.tasa) + ' de interacción'],
       ['Comentarios', F.int(m.T.com), 'participación'], m.T.likes != null ? ['Me gusta a la página', F.int(m.T.likes), 'nuevos seguidores'] : ['Días activa', String(m.T.dias), rango(m)], ['CPM', F.usd(m.cpm), 'costo por mil impresiones']];
     return `<section class="bsec" id="m-${ID[m.marca]}" style="--c:${col};--c2:${C2[m.marca]}">
-      <div class="bban"><div class="plate">${logo(m)}</div><div class="bban-t"><small>Dinámica · Interacción</small><h2>${m.marca}</h2><p>Del ${rango(m)} · ${VID[m.marca] ? 'video impulsado' : 'publicaciones impulsadas'} en Facebook e Instagram</p></div></div>
+      <div class="bban"><div class="plate">${logo(m)}</div><div class="bban-t"><small>Dinámica · Interacción</small><h2>${m.marca}</h2><p>Del ${rango(m)} · ${VID[m.marca] ? 'video boosteado' : 'publicación boosteada'} en Facebook e Instagram</p></div></div>
       <div class="btiles">${bt.map(([a, b, c]) => `<div class="tile"><small>${a}</small><b class="num">${b}</b><span>${c}</span></div>`).join('')}</div>
       <div class="bgrid">
-        <section class="card bcard"><h3>${VID[m.marca] ? 'Video impulsado' : 'Publicaciones impulsadas'}</h3><p class="sub">Ordenadas por impresiones.</p><div class="cres">${cre.map((c) => `<article class="cre"><div class="thumb"><img src="img/${ID[m.marca]}_${c.r}.jpg" alt="${m.marca} ${NET[c.r][0]}" loading="lazy" onerror="this.remove()"><div class="ph">${m.marca}<br>${NET[c.r][0]}</div><span class="net" style="--n:${NET[c.r][1]}">${NET[c.r][0]}</span></div>
+        <section class="card bcard"><h3>${VID[m.marca] ? 'Boosteos del video' : 'Boosteos'}</h3><p class="sub">Un boosteo por red, ordenados por impresiones.</p><div class="cres">${cre.map((c) => `<article class="cre"><div class="thumb"><div class="ph">${m.marca}<br>${NET[c.r][0]}</div><img src="img/${ID[m.marca]}_${c.r}.jpg" alt="${m.marca} ${NET[c.r][0]}" loading="lazy" onerror="this.remove()"><span class="net" style="--n:${NET[c.r][1]}">${NET[c.r][0]}</span>${VID[m.marca] ? '<span class="play" aria-hidden="true"></span>' : ''}</div>
           <div class="cre-body"><span class="nm">${VID[m.marca] ? 'VIDEO' : 'BOOST DINÁMICA'} ${c.r}</span><div><span>Impresiones</span><b class="num">${F.M(c.imp)}</b></div><div><span>Participación</span><b class="num">${F.pct(c.imp / m.T.imp)}</b></div></div></article>`).join('')}</div></section>
         <section class="card bcard"><h3>Por día</h3><div class="keys"><span style="--k:color-mix(in srgb, ${col} 28%, #fff)">Impresiones</span><span style="--k:${col}">Interacciones</span></div><div class="chart" id="c-${ID[m.marca]}"></div></section>
         <section class="card bcard"><h3>Audiencia</h3><p class="sub">Alcance por segmento.</p><div class="aud">
