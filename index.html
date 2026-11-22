@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dinámicas Dicegsa · CCCP UM</title>
-<meta name="description" content="Resultados de las dinámicas de noviembre de Neurobion, Cebion y Lubriderm (Dicegsa) en Meta, Nicaragua.">
+<meta name="description" content="Resultados de las dinámicas de noviembre de Neurobion, Cebión y Lubriderm (Dicegsa) en Meta, Nicaragua.">
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
 :root {
   --fg: #13284f; --muted: #5a6680; --line: #dbe5f0; --panel: #fff; --panel-2: #f3f8fc;
   --bg-1: #e9f4fb; --bg-2: #f7fbfe; --navy: #0b2a66; --cyan: #00a3e6;
-  --c-neu: #d0102b; --c-neu-2: #7c0a1a; --c-ceb: #f08a00; --c-ceb-2: #a35400; --c-lub: #a77a3e; --c-lub-2: #5e4020;
+  --c-neu: #1b6ec2; --c-neu-2: #0d2a6e; --c-ceb: #eca21b; --c-ceb-2: #a85f00; --c-lub: #a77a3e; --c-lub-2: #5e4020;
   --c-fb: #1877f2; --c-ig: #d62976; --ok: #17935a; --radius: 14px; --gap: 14px;
   color-scheme: light;
 }
@@ -52,8 +52,8 @@ button { font-family: inherit; }
 .hchip { display: grid; grid-template-columns: 120px auto; align-items: center; gap: 14px; text-decoration: none; color: var(--fg); background: var(--panel-2); border: 1px solid var(--line); border-left: 5px solid var(--c); border-radius: 12px; padding: 10px 14px; }
 .hchip small { display: block; font-size: 11px; color: var(--muted); }
 .hchip b { font-size: 13px; }
-.logo { display: grid; place-items: center start; height: 34px; }
-.logo img { max-height: 34px; max-width: 120px; width: auto; height: auto; }
+.logo { display: grid; place-items: center start; height: 48px; }
+.logo img { max-height: 48px; max-width: 120px; width: auto; height: auto; }
 .wm { font-weight: 800; font-size: 20px; letter-spacing: -.01em; color: var(--c); }
 
 .tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); margin-top: var(--gap); }
@@ -92,7 +92,7 @@ button { font-family: inherit; }
 .bban::before { content: ""; position: absolute; right: -80px; top: -120px; width: 360px; height: 360px; border-radius: 50%; background: rgba(255,255,255,.10); pointer-events: none; }
 .bban .plate { position: relative; z-index: 1; background: #fff; border-radius: 16px; width: 230px; height: 84px; display: grid; place-items: center; padding: 12px 20px; box-shadow: 0 8px 20px rgba(0,0,0,.18); }
 .bban .plate .logo { place-items: center; height: 54px; }
-.bban .plate .logo img { max-height: 52px; max-width: 190px; }
+.bban .plate .logo img { max-height: 60px; max-width: 190px; }
 .bban .plate .wm { font-size: 30px; }
 .bban-t { position: relative; z-index: 1; }
 .bban-t small { display: block; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; opacity: .85; }
@@ -186,7 +186,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
     <div class="hero-txt">
       <div class="hero-logos"><span class="um-plate"><img class="um" src="img/logo_cccp_um.png" alt="CCCP | UM"></span><span class="sep"></span><img class="dg" src="img/logos/dicegsa.png" alt="Dicegsa"></div>
       <div class="tags"><span class="tag">Meta · Facebook e Instagram</span><span class="tag">Nicaragua · Noviembre 2026</span></div>
-      <h1><span>Dinámicas de noviembre · Interacción</span>Neurobion, Cebion y Lubriderm</h1>
+      <h1><span>Dinámicas de noviembre · Interacción</span>Neurobion, Cebión y Lubriderm</h1>
       <p class="lead" id="lead">—</p>
     </div>
     <div class="hero-chips" id="chips"></div>
@@ -215,13 +215,13 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
   <footer class="foot"><div class="conf"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2" fill="none" stroke="#e8622c" stroke-width="2"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" fill="none" stroke="#e8622c" stroke-width="2"/><circle cx="12" cy="15.5" r="1.4" fill="#e8622c"/></svg><p><b>Información confidencial.</b> Propiedad de CCCP UM Nicaragua. Uso interno; no distribuir sin autorización.</p></div></footer>
 </main>
 
-<script src="datos.js?v=1"></script>
+<script src="datos.js?v=2"></script>
 <script>
 (() => {
   const D = window.DN_DATA, M = D.dinamicas;
-  const COL = { Neurobion: 'var(--c-neu)', Cebion: 'var(--c-ceb)', Lubriderm: 'var(--c-lub)' };
-  const C2 = { Neurobion: 'var(--c-neu-2)', Cebion: 'var(--c-ceb-2)', Lubriderm: 'var(--c-lub-2)' };
-  const ID = { Neurobion: 'neurobion', Cebion: 'cebion', Lubriderm: 'lubriderm' };
+  const COL = { Neurobion: 'var(--c-neu)', 'Cebión': 'var(--c-ceb)', Lubriderm: 'var(--c-lub)' };
+  const C2 = { Neurobion: 'var(--c-neu-2)', 'Cebión': 'var(--c-ceb-2)', Lubriderm: 'var(--c-lub-2)' };
+  const ID = { Neurobion: 'neurobion', 'Cebión': 'cebion', Lubriderm: 'lubriderm' };
   const NET = { FB: ['Facebook', 'var(--c-fb)'], IG: ['Instagram', 'var(--c-ig)'] };
   const MES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
   const nf = (d) => new Intl.NumberFormat('en-US', { maximumFractionDigits: d, minimumFractionDigits: d });

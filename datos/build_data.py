@@ -31,7 +31,7 @@ M = [
   gen=[('female', 4639), ('male', 3316), ('unknown', 27)],
   edad=[('18-24', 2423), ('25-34', 2311), ('35-44', 1380), ('45-54', 785), ('55-64', 609), ('65+', 585)],
   reg=[('Managua Department', 3125), ('Región Autónoma del Atlántico Norte', 706), ('Masaya Department', 656), ('Matagalpa Department', 478), ('León Department', 469), ('Chinandega Department', 414)]),
- dict(marca='Cebion', campana='FARMACO_CEBION_ENG_NOV_2026', alcance=14651, frecuencia=1.53, cpm=1.05,
+ dict(marca='Cebión', campana='FARMACO_CEBION_ENG_NOV_2026', alcance=14651, frecuencia=1.53, cpm=1.05,
   diario="""2026-11-16 2057 2530 384 - 28 1.65
 2026-11-17 4100 4910 477 - 33 1.32
 2026-11-18 6606 7496 512 - 75 0.90
