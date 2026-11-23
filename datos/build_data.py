@@ -47,7 +47,7 @@ M = [
   gen=[('female', 10730), ('male', 3745), ('unknown', 55)],
   edad=[('18-24', 2898), ('25-34', 3771), ('35-44', 2474), ('45-54', 1670), ('55-64', 2007), ('65+', 1867)],
   reg=[('Managua Department', 6383), ('Masaya Department', 1292), ('León Department', 983), ('Chinandega Department', 786), ('Región Autónoma del Atlántico Norte', 763), ('Matagalpa Department', 683)]),
- dict(marca='Lubriderm', campana='FARMACO_LUBRIDERM_ENG_NOV_2026', alcance=518, frecuencia=1.05, cpm=0.87,
+ dict(marca='Lubriderm', campana='FARMACO_LUBRIDERM_ENG_NOV_2026', alcance=6910, frecuencia=1.12, cpm=0.98,
   diario="""2026-11-20 5 5 2 - 0 0
 2026-11-21 2775 2943 2271 - 8 0.97
 2026-11-22 3645 3924 2942 - 7 1.02
