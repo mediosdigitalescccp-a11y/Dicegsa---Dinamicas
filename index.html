@@ -218,7 +218,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
   <footer class="foot"><div class="conf"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.2" fill="none" stroke="#e8622c" stroke-width="2"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" fill="none" stroke="#e8622c" stroke-width="2"/><circle cx="12" cy="15.5" r="1.4" fill="#e8622c"/></svg><p><b>Información confidencial.</b> Propiedad de CCCP UM Nicaragua. Uso interno; no distribuir sin autorización.</p></div></footer>
 </main>
 
-<script src="datos.js?v=5"></script>
+<script src="datos.js?v=6"></script>
 <script>
 (() => {
   const D = window.DN_DATA, M = D.dinamicas;
@@ -243,7 +243,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
   const imp = sum(M.map((m) => m.T), 'imp'), inter = sum(M.map((m) => m.T), 'inter'), com = sum(M.map((m) => m.T), 'com');
   const rango = (m) => `${F.fecha(m.T.desde)} al ${F.fecha(m.T.hasta)}${m.T.activa ? ' (en curso)' : ''}`;
 
-  document.getElementById('lead').innerHTML = `En noviembre corrieron tres dinámicas de una semana: ${M.map((m) => `<b>${m.marca}</b> (${rango(m)})`).join(', ').replace(/, ([^,]*)$/, ' y $1')}. Juntas suman <b>${F.int(imp)}</b> impresiones, <b>${F.int(inter)}</b> interacciones y <b>${F.int(com)}</b> comentarios.`;
+  document.getElementById('lead').innerHTML = `En noviembre corrieron tres dinámicas de una semana: ${M.map((m) => `<b>${m.marca}</b> (${F.fecha(m.T.desde)} al ${F.fecha(m.T.hasta)}${m.T.activa ? ', en curso' : ''})`).join(', ').replace(/, ([^,]*)$/, ' y $1')}. Juntas suman <b>${F.int(imp)}</b> impresiones, <b>${F.int(inter)}</b> interacciones y <b>${F.int(com)}</b> comentarios.`;
   document.getElementById('chips').innerHTML = M.map((m) => `<a class="hchip" href="#m-${ID[m.marca]}" style="--c:${COL[m.marca]}">${logo(m)}<span><b>${rango(m)}</b><small>${F.int(m.T.inter)} interacciones · ${F.int(m.T.com)} comentarios</small></span></a>`).join('');
   document.getElementById('nav').insertAdjacentHTML('beforeend', M.map((m) => `<a href="#m-${ID[m.marca]}" data-t="m-${ID[m.marca]}" style="--c:${COL[m.marca]}">${m.marca}</a>`).join(''));
 

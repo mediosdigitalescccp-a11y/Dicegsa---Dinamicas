@@ -47,21 +47,27 @@ M = [
   gen=[('female', 10730), ('male', 3745), ('unknown', 55)],
   edad=[('18-24', 2898), ('25-34', 3771), ('35-44', 2474), ('45-54', 1670), ('55-64', 2007), ('65+', 1867)],
   reg=[('Managua Department', 6383), ('Masaya Department', 1292), ('León Department', 983), ('Chinandega Department', 786), ('Región Autónoma del Atlántico Norte', 763), ('Matagalpa Department', 683)]),
- dict(marca='Lubriderm', campana='FARMACO_LUBRIDERM_ENG_NOV_2026', alcance=6910, frecuencia=1.12, cpm=0.98,
+ dict(marca='Lubriderm', campana='FARMACO_LUBRIDERM_ENG_NOV_2026', alcance=14304, frecuencia=1.2, cpm=0.86,
   diario="""2026-11-20 5 5 2 - 0 0
 2026-11-21 2775 2943 2271 - 8 0.97
-2026-11-22 3645 3924 2942 - 7 1.02
-2026-11-23 940 1002 684 - 4 0.84""",
-  cre="""2026-11-23 FB 114 125
-2026-11-23 IG 817 877
+2026-11-22 3646 3929 2947 - 7 1.02
+2026-11-23 4867 5127 3444 - 14 0.73
+2026-11-24 3818 4003 2892 - 9 0.82
+2026-11-25 1036 1116 674 - 2 0.77""",
+  cre="""2026-11-25 FB 174 184
+2026-11-25 IG 881 932
+2026-11-24 FB 826 857
+2026-11-24 IG 3047 3146
+2026-11-23 FB 434 451
+2026-11-23 IG 4492 4676
 2026-11-22 FB 450 482
-2026-11-22 IG 3176 3442
+2026-11-22 IG 3177 3447
 2026-11-21 FB 975 1049
 2026-11-21 IG 1789 1894
 2026-11-20 FB 5 5""",
-  gen=[('female', 4639), ('male', 2339), ('unknown', 27)],
-  edad=[('18-24', 1108), ('25-34', 1480), ('35-44', 1225), ('45-54', 1033), ('55-64', 1124), ('65+', 893)],
-  reg=[('Managua Department', 2636), ('León Department', 553), ('Matagalpa Department', 422), ('Chinandega Department', 414), ('Masaya Department', 413), ('Estelí Department', 330)]),
+  gen=[('female', 9769), ('male', 4080), ('unknown', 60)],
+  edad=[('18-24', 1811), ('25-34', 2479), ('35-44', 2344), ('45-54', 2206), ('55-64', 2715), ('65+', 2428)],
+  reg=[('Managua Department', 5472), ('León Department', 1095), ('Masaya Department', 909), ('Chinandega Department', 893), ('Matagalpa Department', 806), ('Estelí Department', 692)]),
 ]
 out = []
 for m in M:
