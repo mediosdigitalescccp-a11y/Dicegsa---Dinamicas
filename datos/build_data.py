@@ -47,17 +47,20 @@ M = [
   gen=[('female', 10730), ('male', 3745), ('unknown', 55)],
   edad=[('18-24', 2898), ('25-34', 3771), ('35-44', 2474), ('45-54', 1670), ('55-64', 2007), ('65+', 1867)],
   reg=[('Managua Department', 6383), ('Masaya Department', 1292), ('León Department', 983), ('Chinandega Department', 786), ('Región Autónoma del Atlántico Norte', 763), ('Matagalpa Department', 683)]),
- dict(marca='Lubriderm', campana='FARMACO_LUBRIDERM_ENG_NOV_2026', alcance=14304, frecuencia=1.2, cpm=0.86,
+ dict(marca='Lubriderm', campana='FARMACO_LUBRIDERM_ENG_NOV_2026', alcance=18105, frecuencia=1.21, cpm=0.84,
   diario="""2026-11-20 5 5 2 - 0 0
 2026-11-21 2775 2943 2271 - 8 0.97
 2026-11-22 3646 3929 2947 - 7 1.02
 2026-11-23 4867 5127 3444 - 14 0.73
-2026-11-24 3818 4003 2892 - 9 0.82
-2026-11-25 1036 1116 674 - 2 0.77""",
-  cre="""2026-11-25 FB 174 184
-2026-11-25 IG 881 932
-2026-11-24 FB 826 857
-2026-11-24 IG 3047 3146
+2026-11-24 3819 4010 2896 - 10 0.82
+2026-11-25 4183 4390 2970 - 10 0.78
+2026-11-26 1164 1185 695 - 4 0.65""",
+  cre="""2026-11-26 FB 120 130
+2026-11-26 IG 1046 1055
+2026-11-25 FB 631 674
+2026-11-25 IG 3633 3716
+2026-11-24 FB 826 858
+2026-11-24 IG 3048 3152
 2026-11-23 FB 434 451
 2026-11-23 IG 4492 4676
 2026-11-22 FB 450 482
@@ -65,9 +68,9 @@ M = [
 2026-11-21 FB 975 1049
 2026-11-21 IG 1789 1894
 2026-11-20 FB 5 5""",
-  gen=[('female', 9769), ('male', 4080), ('unknown', 60)],
-  edad=[('18-24', 1811), ('25-34', 2479), ('35-44', 2344), ('45-54', 2206), ('55-64', 2715), ('65+', 2428)],
-  reg=[('Managua Department', 5472), ('León Department', 1095), ('Masaya Department', 909), ('Chinandega Department', 893), ('Matagalpa Department', 806), ('Estelí Department', 692)]),
+  gen=[('female', 12423), ('male', 4839), ('unknown', 70)],
+  edad=[('18-24', 2129), ('25-34', 2886), ('35-44', 2856), ('45-54', 2753), ('55-64', 3471), ('65+', 3050)],
+  reg=[('Managua Department', 6774), ('León Department', 1382), ('Masaya Department', 1136), ('Chinandega Department', 1098), ('Matagalpa Department', 959), ('Estelí Department', 850)]),
 ]
 out = []
 for m in M:
