@@ -47,18 +47,18 @@ M = [
   gen=[('female', 10730), ('male', 3745), ('unknown', 55)],
   edad=[('18-24', 2898), ('25-34', 3771), ('35-44', 2474), ('45-54', 1670), ('55-64', 2007), ('65+', 1867)],
   reg=[('Managua Department', 6383), ('Masaya Department', 1292), ('León Department', 983), ('Chinandega Department', 786), ('Región Autónoma del Atlántico Norte', 763), ('Matagalpa Department', 683)]),
- dict(marca='Lubriderm', campana='FARMACO_LUBRIDERM_ENG_NOV_2026', alcance=18105, frecuencia=1.21, cpm=0.84,
+ dict(marca='Lubriderm', campana='FARMACO_LUBRIDERM_ENG_NOV_2026', alcance=20052, frecuencia=1.23, cpm=0.84,
   diario="""2026-11-20 5 5 2 - 0 0
 2026-11-21 2775 2943 2271 - 8 0.97
 2026-11-22 3646 3929 2947 - 7 1.02
 2026-11-23 4867 5127 3444 - 14 0.73
 2026-11-24 3819 4010 2896 - 10 0.82
-2026-11-25 4183 4390 2970 - 10 0.78
-2026-11-26 1164 1185 695 - 4 0.65""",
-  cre="""2026-11-26 FB 120 130
-2026-11-26 IG 1046 1055
-2026-11-25 FB 631 674
-2026-11-25 IG 3633 3716
+2026-11-25 4195 4400 2975 - 10 0.78
+2026-11-26 4069 4296 2931 - 12 0.78""",
+  cre="""2026-11-26 FB 707 764
+2026-11-26 IG 3419 3532
+2026-11-25 FB 632 675
+2026-11-25 IG 3646 3725
 2026-11-24 FB 826 858
 2026-11-24 IG 3048 3152
 2026-11-23 FB 434 451
@@ -68,9 +68,9 @@ M = [
 2026-11-21 FB 975 1049
 2026-11-21 IG 1789 1894
 2026-11-20 FB 5 5""",
-  gen=[('female', 12423), ('male', 4839), ('unknown', 70)],
-  edad=[('18-24', 2129), ('25-34', 2886), ('35-44', 2856), ('45-54', 2753), ('55-64', 3471), ('65+', 3050)],
-  reg=[('Managua Department', 6774), ('León Department', 1382), ('Masaya Department', 1136), ('Chinandega Department', 1098), ('Matagalpa Department', 959), ('Estelí Department', 850)]),
+  gen=[('female', 13948), ('male', 5426), ('unknown', 79)],
+  edad=[('18-24', 2400), ('25-34', 3264), ('35-44', 3206), ('45-54', 3108), ('55-64', 3942), ('65+', 3424)],
+  reg=[('Managua Department', 7560), ('León Department', 1554), ('Masaya Department', 1292), ('Chinandega Department', 1223), ('Matagalpa Department', 1081), ('Estelí Department', 948)]),
 ]
 out = []
 for m in M:
