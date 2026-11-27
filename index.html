@@ -85,6 +85,8 @@ button { font-family: inherit; }
 .cell-bar i { display: inline-block; height: 8px; border-radius: 999px; background: var(--c); }
 .finds { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
 .find { background: var(--panel-2); border-radius: 12px; padding: 14px; border-left: 4px solid var(--c); font-size: 13px; line-height: 1.5; }
+.find-a { margin: 8px 0 0; padding-top: 8px; border-top: 1px dashed var(--line); color: var(--muted); font-size: 12.5px; }
+.find-a b { color: var(--c); }
 .find small { display: block; font-size: 10.5px; font-weight: 800; letter-spacing: .08em; color: var(--c); margin-bottom: 4px; text-transform: uppercase; }
 
 .bsec { margin-top: 40px; scroll-margin-top: 60px; }
@@ -200,6 +202,7 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
   <div class="sec" id="comparativo"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></i><h2>Comparativo de dinámicas</h2><span class="sec-line"></span><p>Cada dinámica estuvo activa alrededor de una semana</p></div>
   <section class="card">
     <div class="tbl-wrap"><table class="tbl" id="cmp"></table></div>
+    <h3 style="margin:18px 0 0">Hallazgos estratégicos</h3><p class="sub" style="margin:4px 0 0">Aprendizajes para creatividad, pauta y momentos de uso de cada marca.</p>
     <div class="finds" id="finds"></div>
   </section>
 
@@ -259,11 +262,25 @@ details.notes ul { line-height: 1.6; padding-left: 18px; }
   const byCom = [...M].sort((a, b) => b.T.com - a.T.com)[0], byCpm = [...M].sort((a, b) => a.cpm - b.cpm)[0];
   const ig = (m) => sum(m.creativos.filter((c) => c.red === 'IG'), 'impresiones') / m.T.imp;
   const igTop = [...M].sort((a, b) => ig(b) - ig(a))[0];
-  document.getElementById('finds').innerHTML = [
-    ['Interacción', COL[best.marca], (() => { const im = M.filter((m) => !VID[m.marca]).sort((a, b) => b.T.tasa - a.T.tasa), v = M.filter((m) => VID[m.marca]); return `Entre las publicaciones con imagen, <b>${im[0].marca}</b> logra <b>${F.pct1(im[0].T.tasa)}</b> de interacción frente a ${F.pct1(im[1].T.tasa)} de ${im[1].marca}.` + (v.length ? ` ${v.map((m) => m.marca).join(', ')} (video) marca ${v.map((m) => F.pct1(m.T.tasa)).join(', ')} porque Meta suma las reproducciones como interacciones.` : ''); })()],
-    ['Participación', COL[byCom.marca], `<b>${byCom.marca}</b> reúne más comentarios (<b>${F.int(byCom.T.com)}</b>), la señal más directa de participación en la dinámica.`],
-    ['Instagram', 'var(--c-ig)', `<b>${igTop.marca}</b> es la dinámica que más se apoya en Instagram: <b>${F.pct(ig(igTop))}</b> de sus impresiones. El CPM más bajo es el de ${byCpm.marca} (<b>${F.usd(byCpm.cpm)}</b>).`]
-  ].map(([k, c, t]) => `<div class="find" style="--c:${c}"><small>${k}</small>${t}</div>`).join('');
+  {
+    const cpm1 = (m) => m.T.com / m.T.imp * 1000, rk = [...M].sort((a, b) => cpm1(b) - cpm1(a)), top = rk[0], low = rk[rk.length - 1];
+    const ini = (m) => { const d = m.diario.filter((r) => r.impresiones > 100), a = d.slice(0, 2), z = d.slice(2); const f = (x) => sum(x, 'comentarios') / sum(x, 'impresiones') * 1000; return { a: f(a), z: f(z) }; };
+    const n = M.find((m) => m.marca === 'Neurobion') || M[0], ni = ini(n);
+    const vid = M.filter((m) => VID[m.marca]), img = M.filter((m) => !VID[m.marca]);
+    const sh = (m, k, f) => { const t = sum(m[k], 'v'); return sum(m[k].filter(f), 'v') / t; };
+    const muj = M.map((m) => [m.marca, sh(m, 'genero', (x) => x.seg === 'Mujer')]), may = M.map((m) => [m.marca, sh(m, 'edad', (x) => /^(55|65)/.test(x.seg))]).sort((a, b) => b[1] - a[1]);
+    const ig = (m) => sum(m.creativos.filter((c) => c.red === 'IG'), 'impresiones') / m.T.imp;
+    const x = (a, b) => b ? nf(1).format(a / b) + ' veces' : '—';
+    const cards = [
+      ['Mecánica', COL[top.marca], `<b>${top.marca}</b> logra <b>${nf(1).format(cpm1(top))}</b> comentarios por cada mil impresiones, <b>${x(cpm1(top), cpm1(low))}</b> lo de ${low.marca} (${nf(1).format(cpm1(low))}). Su mecánica es la que mejor invita a participar.`, `Replicar lo que funcionó en ${top.marca} (tipo de pregunta, premio y forma de responder) como plantilla para las próximas dinámicas.`],
+      ['Ritmo de la dinámica', COL[n.marca], `La participación se concentra al inicio: en ${n.marca} los dos primeros días suman <b>${nf(1).format(ni.a)}</b> comentarios por cada mil impresiones y luego bajan a <b>${nf(1).format(ni.z)}</b>.`, 'Dinámicas de 4 a 5 días con un recordatorio a mitad de semana (historia o publicación de “últimas horas”) para reactivar.'],
+      ['Formato', COL[(vid[0] || M[0]).marca], vid.length ? `El video de <b>${vid.map((m) => m.marca).join(', ')}</b> suma interacciones por reproducción, pero solo <b>${nf(1).format(cpm1(vid[0]))}</b> comentarios por cada mil impresiones frente a <b>${nf(1).format(sum(img.map((m) => m.T), 'com') / sum(img.map((m) => m.T), 'imp') * 1000)}</b> de las piezas con imagen.` : '', 'Usar el video para alcance y atención, y la imagen con la pregunta en grande para pedir la participación.'],
+      ['Audiencia', COL['Cebión'], `Las mujeres son el motor de las dinámicas (${muj.map(([k, v]) => `${k} <b>${F.pct(v)}</b>`).join(', ')} del alcance) y en <b>${may[0][0]}</b> el <b>${F.pct(may[0][1])}</b> del alcance tiene 55 años o más.`, 'Hablarle a quien cuida la salud de la familia: mamás y adultos mayores, con premios y mensajes pensados para ellos.'],
+      ['Momentos de uso', 'var(--cyan)', `Cada marca tiene un momento natural de conversación: Cebión con defensas y cambios de clima, Neurobion con energía y cansancio de la semana, Lubriderm con piel seca y sol.`, 'Programar las próximas dinámicas en su temporada: Cebión en lluvias y regreso a clases, Lubriderm en verano, Neurobion en cierre de año y quincenas.'],
+      ['Instagram', 'var(--c-ig)', `Instagram pesa distinto en cada dinámica: ${[...M].sort((a, b) => ig(b) - ig(a)).map((m) => `${m.marca} <b>${F.pct(ig(m))}</b>`).join(', ')} de las impresiones.`, 'Medir los comentarios por red en la próxima dinámica para decidir el reparto entre Facebook e Instagram, y apoyar Instagram con historias y stickers de respuesta.']
+    ];
+    document.getElementById('finds').innerHTML = cards.map(([k, c, t, o]) => `<div class="find" style="--c:${c}"><small>${k}</small>${t}<p class="find-a"><b>Oportunidad:</b> ${o}</p></div>`).join('');
+  }
 
   // Secciones por marca
   const drawDia = (m) => { const box = document.getElementById('c-' + ID[m.marca]), d = m.diario, W = Math.max(box.clientWidth, 260), H = Math.max(box.clientHeight, 220), mg = { t: 22, r: 4, b: 24, l: 4 };
